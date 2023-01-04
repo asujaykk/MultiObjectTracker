@@ -56,7 +56,17 @@ This tracker is designed with YOLOv7 object detector, but still work with other 
              detections =object_detector(frmae)              # object detector process current frmae for detecting objects and return detection lis        
              tracker_detection=mo_tracker.track(frame,detections)   # apply track method on current detection and get tracked detection as output      
              detection_plotting_function (frame,tracker_detection)  # pass tracker_detection to detection_plotting_function (a slight change might be required in plotting function based on the tracker output and plotiing function)             
-         
+
+# Major tracker modules of the MultiObjectTracker
+1. tracker_v2
+2. tracker_v3
+
+## tracker_v2
+
+
+## tracker_v3
+
+
 
 ## Aplications.
 1. Traffic monitoring.
