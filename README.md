@@ -15,7 +15,7 @@ This tracker is designed with YOLOv7 object detector, but still work with other 
 1. Nearest object search
 2. Iou matching
 
-## How to use the tracker:
+## How to use the tracker with object detection and recognition model:
 
 1. The tracker object need to be created with list of class names as constructor parameter.
 2. Then process one  image/video frmae with the detector (lets say yolo object detector) and get the detections.
@@ -57,6 +57,15 @@ This tracker is designed with YOLOv7 object detector, but still work with other 
              tracker_detection=mo_tracker.track(frame,detections)   # apply track method on current detection and get tracked detection as output      
              detection_plotting_function (frame,tracker_detection)  # pass tracker_detection to detection_plotting_function (a slight change might be required in plotting function based on the tracker output and plotiing function)             
          
-         
+
+## Aplications.
+1. Traffic monitoring.
+2. Vehicle spped detection from traffic camera.
+3. Accident detection.
+4. Environment monitoring for self driving cars.
+5. Object tracking drones.
+
+
+
          
          
