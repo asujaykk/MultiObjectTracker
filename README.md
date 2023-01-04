@@ -2,14 +2,20 @@
 This is multiobject tracker module designed to use with any object detectors. 
 This tracker is designed with YOLOv7 object detector, but still work with other detectors with a slight change in the input parameters to the tracker.
 
+## Tracking procedure
+1. Detect Object from the video frame using an object detector and recognition model (recomended yolov7).
+2. Create a list of objects with the new detections (current objects).
+3. Find the best match for each objects from previous frmae (old objects) with the current objects, the matched objects will be updated with the old label.
+4. Find new objects entries from temp objects those were not available in the previous frame.
+5. identify missed objects (objects was there in the previous frames but not in the current framae).
+6. Save matched objects and new objects for next stages and remove missed objects (only objects they are missing for more than a number of frmaes).
+7. return the labels for all new objects and old objects in the current frame (label represent the objects id) back for plotting or further application.
+
 ## Method used for tracking.
 1. Nearest object search
 2. Iou matching
 
 ## How to use the tracker:
-
-
-
 
 1. The tracker object need to be created with list of class names as constructor parameter.
 2. Then process one  image/video frmae with the detector (lets say yolo object detector) and get the detections.
