@@ -1,15 +1,20 @@
-# MultiObjectTracker
-This is multiobject tracker module designed to use with any object detectors. 
-This tracker is designed with YOLOv7 object detector, but still work with other detectors with a slight change in the input parameters to the tracker.
+# MultiObjectTracker.
+This is a multi object tracker package designed to use with any object detectors. We tested it with YOLOv7 object detector, but still work with other detectors with a slight change in the input parameters to the tracker.
 
-## Tracking procedure
-1. Detect object from the video frame using an object detection and recognition model (recomended yolov7).
-2. Create a list of objects with the new detections (current objects).
-3. Find the best match for each objects from previous frmae (old objects) with the current objects, the matched objects will be updated with the old label.
-4. Find new objects entries from temp objects those were not available in the previous frame.
-5. Identify missed objects (objects was there in the previous frames but not in the current framae).
-6. Save matched objects and new objects for next stages and remove missed objects (only objects they are missing for more than a number of frmaes).
-7. Return the labels for all new objects and old objects in the current frame (label represent the objects id) back for plotting or further application.
+## Object tracker.
+Object tracking is the process of identifying same object and keep track of their location with unique label as they move around in a video. Object tracker consist of two sections.
+1. Object detector : An object detector detects different objects , their locations (bounding box) and class type from a single video frame.
+2. Tracker : The tracker process the detections of the current frame and  identify the best matches for the objects from the previous frame. The matched objects will get the unique identification from the previous objects. The tracker also need to clear missed object and add new entries as video progress. 
+
+## Object racking:
+The tracker depends on an object detector for detecting the objects , their location (bounding box) and class type from a video frame. The detections from the object detector will be  passed to the tracker as input for each frame. The tracker will keep track of the detected objects with unique names/labels from frame to frame until the object undetected/lost from the scene. The major steps involved in the tracking process is as follows.    
+   1. Detect object from the video frame using an object detection and recognition model (recomended yolov7).
+   2. Create a list of objects with the new detections (current objects).
+   3. Find the best match for each objects from previous frmae (old objects) with the current objects, the matched objects will be updated with the old label.
+   4. Find new object entries from temp objects those were not available in the previous frame.
+   5. Identify missed objects (objects was there in the previous frames but not in the current framae).
+   6. Save matched objects and new objects for next stages and remove missed objects (only objects they are missing for more that a threshold period/frames).
+   7. Return the labels for all new objects and old objects in the current frame (label represent the objects id) back for plotting or further application.
 
 ## Methods used for tracking.
 1. Nearest object search
