@@ -11,7 +11,7 @@ This tracker is designed with YOLOv7 object detector, but still work with other 
 6. Save matched objects and new objects for next stages and remove missed objects (only objects they are missing for more than a number of frmaes).
 7. Return the labels for all new objects and old objects in the current frame (label represent the objects id) back for plotting or further application.
 
-## Method used for tracking.
+## Methods used for tracking.
 1. Nearest object search
 2. Iou matching
 
@@ -58,14 +58,17 @@ This tracker is designed with YOLOv7 object detector, but still work with other 
              detection_plotting_function (frame,tracker_detection)  # pass tracker_detection to detection_plotting_function (a slight change might be required in plotting function based on the tracker output and plotiing function)             
 
 # Major tracker modules of the MultiObjectTracker
-1. tracker_v2
-2. tracker_v3
+There are two tarckers available in this package and they are v2 and v3. These trackers have similar interface and both can be used with different detectors. The tracker v2 is a lite version and use nearest search and first match approach to track the object. And tracker v3 is the upgraded version and which use multiple object matching methods and improved cross matching algorithm for identifying best matches.
 
-## tracker_v2
+### tracker_v2 :
+Tracker v2 is the basic version. It purely works based on the nearest object search. The tracker search the nearest object based on the movement of object centre point in consecutive frames.
 
-
-## tracker_v3
-
+### tracker_v3 :
+Tracker v3 is a bit advanced version of tracker v2 and it work based on the following approaches.
+1. Nearest object search.
+2. Iou matcthing.
+3. Best cross matching algorithm.  
+It is computationally expensive but provide much accurate tracking. This tracker handle detections as objects and the user can add their own matching algorithms in "object" class to achive customized tracking.
 
 
 ## Aplications.
