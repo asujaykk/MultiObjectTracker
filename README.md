@@ -57,7 +57,7 @@ This tracker is designed with YOLOv7 object detector, but still work with other 
              tracker_detection=mo_tracker.track(frame,detections)   # apply track method on current detection and get tracked detection as output      
              detection_plotting_function (frame,tracker_detection)  # pass tracker_detection to detection_plotting_function (a slight change might be required in plotting function based on the tracker output and plotiing function)             
 
-# Major tracker modules of the MultiObjectTracker
+## Major tracker modules of the MultiObjectTracker
 There are two tarckers available in this package and they are v2 and v3. These trackers have similar interface and both can be used with different detectors. The tracker v2 is a lite version and use nearest search and first match approach to track the object. And tracker v3 is the upgraded version and which use multiple object matching methods and improved cross matching algorithm for identifying best matches.
 
 ### tracker_v2 :
