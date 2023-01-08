@@ -59,7 +59,7 @@ The following general code template shows how to use the tracker in selective tr
    #Import modules
    from MultiObjectTracker.tracker_v3 import tracker   #load tracker module 
    import object_detector                              #just a template only
-   selective_objects=[2,3,4]                           # List of class labels. Only object belongs to this class types [2,3,4] get tracked. rest of the objects ignored.
+   selective_objects=['car','truck','person']                           # List of class labels. Only object belongs to this class types [2,3,4] get tracked. rest of the objects ignored.
    #Create tracker object with list of class names as constructor parameter. 
    mo_tracker=tracker(list_class_names,sel_classes=selective_objects,mfc=10,max_dist=None)
        
@@ -75,9 +75,9 @@ The following general code template shows how to use the tracker in selective tr
 The tracker cnstructor accept four parameters and they are explained below.   
    1. names       : The list of class names supported by the object detector (list of strings, their index indicate the class label)        
    2. sel_classes    : If user want to track only a particular class objects then the list of classes to be tracked can be provided here.   
-      List of class labels to be tracked (list of integers indicating the class name index)   
+      List of class labels to be tracked (list of class names (string) to be tracked)   
       If it is 'None' then tracker track all available objects , default value is None.         
-      example: [2,3,4] Then tracker only track object of class 2,3 and 4.                
+      example: ['car','truck','person'] Then tracker only track 'car', 'truck' and 'person' only.              
    3. mfc         : maximum frame count to keep missed objects (default=10 frames)
    4. max_dist    : maximum distance (in pixels : integer) of movement object centre allowed between consequtive frames to consider they are same object.
       if 'None', then dynamic threshold will be used (the threshold will be set based on the previous object size )
