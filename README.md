@@ -1,25 +1,18 @@
 # Multi-Object-Tracker.
 This is a multi object tracker package designed to use with any object detectors. We tested it with YOLOv7 object detector, but it will work with other detectors as well with a little adapatations.
 
-## Object tracking:
+## 1. Object tracking:
 Object tracking is the process of identifying same object and keep track of their location with unique label as they move around in a video. Object tracker consist of two sections.
 1. ***Object detector:***  
 An object detector detects different objects , their locations (bounding box) and class type from a single video frame.
 2. ***Tracker:***  
 The tracker process the detections of the current frame and  identify the best matches for the objects from the previous frame. The matched objects will get the unique identification from the previous objects. The tracker also need to clear missed object and add new entries as video progress. 
 
-## Tracking process:
+## 2. Tracking process:
 As mentioned before ,in object tracking the first step is to detect, locate (bounding box) and find class type of objects from a video frame. Then the detections from the detector will be  passed to the tracker as input and tracker will keep track of the detected objects with unique names/labels from frame to frame until the object un-detected/lost from the scene. The major steps involved in the tracking process is as follows. 
-   1. Detect object from the video frame using an object detection and recognition model (recomended yolov7).
-   2. Create a list of objects with the new detections (current objects). The first frame objects/detections will be used as reference objects (The objects to be tracked).
-   3. Find the best match for each objects from previous frmae (old objects/reference objects) with the current objects, the matched objects will be updated with the old label.
-   4. Find new object entries from temp objects those were not available in the previous frame.
-   5. Identify missed objects (objects was there in the previous frames but not in the current framae).
-   6. Save matched objects and new objects for next stages and remove missed objects (only objects they are missing for more than a threshold period/frames).
-   7. Return the labels for all new objects and old objects in the current frame (label represent the objects id) back for plotting or further application.
-   8 Continue this process until all frames are processed.
+![Screenshot from 2023-01-08 15-22-18](https://user-images.githubusercontent.com/78997596/211189836-d1def484-6d78-4002-861c-18330f02fb22.png)
 
-## How to use the tracker with object detection and recognition model:
+## 3. How to use the tracker with object detection and recognition model:
 The tracker can be used with any object detector, and a general code template is given below for reference. 
    ```
    #Import modules
@@ -36,7 +29,7 @@ The tracker can be used with any object detector, and a general code template is
        plotting_function(frame,tracker_out)             # tracker output will be used for plotiing/other applications
        visualizer(frmae)                                #visualizing function
    ```
-### The tracker constructor:
+### 3.1 The tracker constructor:
 The tracker cnstructor accept four parameters and they are explained below.   
    1. names       : The list of class names supported by the object detector (list of strings, their index indicate the class label)        
    2. sel_classes    : If userwant to track only a particular class objects then the list of classes to be tracked can be provided here. 
@@ -47,7 +40,7 @@ The tracker cnstructor accept four parameters and they are explained below.
    4. max_dist    : maximum distance (in pixels : integer) of movement object centre allowed between consequtive frames to consider they are same object.
       if 'None', then dynamic threshold will be used (the threshold will be set based on the previous object size )
       
-### The tracker.track() method:
+### 3.2 The tracker.track() method:
 The 'tracker.track(im0,det)' method accept two parameters and they are as follows.  
    1. im0 : The frame/image being processed (it should be a numpy array)  
    2. det : List of detections (from the detector) of one frame. 
@@ -62,13 +55,13 @@ The 'tracker.track(im0,det)' method accept two parameters and they are as follow
    * class= integer representing the class.*
    * label= string representing an objecrt "classname_<id>"   example: truck_5, car_6.
 
-## Methods used for object matching between current frame and previous frame:
+## 4. Methods used for object matching between current frame and previous frame:
 The objects are matched using the following concepts, their corresponding methods can be found in object class ("object.py").
 1. Nearest object search.
 2. Iou matching.
 3. Histogram matching.
 
-### Customizing/adding matching methods:
+### 4.1 Customizing/adding matching methods:
 If user want to add more image matching method to improve the matching process, then user can add their own matching methods under 'object' class.
 The method should meet the following requirements,
 1. It should be a static method defined under 'object' class.
@@ -81,7 +74,7 @@ Note:
 
 
 The user can add their own matching algorithms in "object" class to achive customized tracking.
-## Aplications.
+## 5. Aplications.
 1. Traffic monitoring.
 2. Vehicle spped detection from traffic camera.
 3. Accident detection.
