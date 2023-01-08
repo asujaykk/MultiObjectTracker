@@ -10,7 +10,7 @@ The tracker process the detections of the current frame and  identify the best m
 
 ## 2. Tracking process:
 As mentioned before ,in object tracking the first step is to detect, locate (bounding box) and find class type of objects from a video frame. Then the detections from the detector will be  passed to the tracker as input and tracker will keep track of the detected objects with unique names/labels from frame to frame until the object un-detected/lost from the scene. The major steps involved in the tracking process is as follows. 
-![Screenshot from 2023-01-08 15-22-18](https://user-images.githubusercontent.com/78997596/211189836-d1def484-6d78-4002-861c-18330f02fb22.png)
+
 
 ## 3. How to use the tracker with object detection and recognition model:
 The tracker can be used with any object detector, and a general code template is given below for reference. 
@@ -32,7 +32,7 @@ The tracker can be used with any object detector, and a general code template is
 ### 3.1 The tracker constructor:
 The tracker cnstructor accept four parameters and they are explained below.   
    1. names       : The list of class names supported by the object detector (list of strings, their index indicate the class label)        
-   2. sel_classes    : If userwant to track only a particular class objects then the list of classes to be tracked can be provided here. 
+   2. sel_classes    : If user want to track only a particular class objects then the list of classes to be tracked can be provided here.   
       List of class labels to be tracked (list of integers indicating the class name index)   
       If it is 'None' then tracker track all available objects , default value is None.         
       example: [2,3,4] Then tracker only track object of class 2,3 and 4.                
