@@ -31,7 +31,7 @@ The tracker can be used in two modes they are:
    All available objects types/classes will be tracked.
 2. ***Selective tracking mode:***  
    In this mode user can configure a list of classes to be tracked, then the tracker skip all other objects classes from tracking. This will help if you are concerened about only a set of object types.  
-   ex: Only monitors persons in a scene, only monitors cars from traffic , only monitors 'cars and busses and motorcycles' from the scene.
+   ex: Only monitor persons in a scene, only monitor cars from traffic , only monitor 'cars and busses and motorcycles' from the scene.
 
 ### 3.1. Normal tracking mode. 
 The following general code template shows how to use the tracker in normal mode with an objet detection and recognition code,
