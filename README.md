@@ -1,5 +1,5 @@
 # Multi-Object-Tracker.
-This is a multi object tracker package designed to use with any object detectors. We tested it with YOLOv7 object detector, but it will work with other detectors as well with a little adapatations.
+This is a multi object tracker package designed to use with any object detectors. We tested it with YOLOv7 object detector, but it will work with other detectors as well by formatting the output of the object detector to make it compatable with the tracker.
 
 ## 1. Object tracking:
 Object tracking is the process of identifying same object and keep track of their location with unique label as they move around in a video. Object tracker consist of two sections.
@@ -14,8 +14,9 @@ As mentioned before ,in object tracking the first step is to detect, locate (bou
 
 
 ## 3. How to use the tracker with object detection and recognition model:
-The tracker can be used with any object detector,   
-As a first step download'MultiObjectTracker' package to your working directory with below command
+This object tracker is designed to work with 'yolov7 object detector', but it can be used with any object detector by formating the output of object detector to make it compatable with 'tracker.track()' method.The expected parameter format of 'tracker.track()' method explained in following section. So if you are using any other object detection model then please convert the detection output to the supported format before passing to 'tracker.track()' method.
+
+As a first step download 'MultiObjectTracker' package to your working directory with below command,
 ```
 git clone git@github.com:asujaykk/MultiObjectTracker.git
 ```
@@ -25,7 +26,15 @@ Then import the tracker module (tracker_v3.py) to your python code as follows,
 from MultiObjectTracker.tracker_v3 import tracker 
 ```
 
-Once you properlyimported the tracker module , then it can be used with any detector, and a general code template is given below for reference.
+The tracker can be used in two modes they are:
+1. ***Normal tracking mode:***   
+   All available objects types/classes will be tracked.
+2. ***Selective tracking mode:***  
+   In this mode user can configure a list of classes to be tracked, then the tracker skip all other objects classes from tracking. This will help if you are concerened about only a set of object types.  
+   ex: Only monitors persons in a scene, only monitors cars from traffic , only monitors 'cars and busses and motorcycles' from the scene.
+
+### 3.1. Normal tracking mode. 
+The following general code template shows how to use the tracker in normal mode with an objet detection and recognition code,
 
    ```
    #Import modules
@@ -33,7 +42,7 @@ Once you properlyimported the tracker module , then it can be used with any dete
    import object_detector                              #just a template only
  
    #Create tracker object with list of class names as constructor parameter. 
-   mo_tracker=tracker(list_class_names,sel_classes=None,mfc=10,max_dist=None)
+   mo_tracker=tracker(list_class_names,sel_classes=None,mfc=10,max_dist=None)  #sel_classes=None enable Normal tracking mode.
        
    #loop through  video frames
    for frame in video_frames:
@@ -42,7 +51,27 @@ Once you properlyimported the tracker module , then it can be used with any dete
        plotting_function(frame,tracker_out)             # tracker output will be used for plotiing/other applications
        visualizer(frmae)                                #visualizing function
    ```
-### 3.1 The tracker constructor:
+   
+### 3.2. Selective tracking mode. 
+The following general code template shows how to use the tracker in selective tracking mode with an objet detection and recognition code,
+
+   ```
+   #Import modules
+   from MultiObjectTracker.tracker_v3 import tracker   #load tracker module 
+   import object_detector                              #just a template only
+   selective_objects=[2,3,4]                           # List of class labels. Only object belongs to this class types [2,3,4] get tracked. rest of the objects ignored.
+   #Create tracker object with list of class names as constructor parameter. 
+   mo_tracker=tracker(list_class_names,sel_classes=selective_objects,mfc=10,max_dist=None)
+       
+   #Loop through  video frames
+   for frame in video_frames:
+       detections=object_detector(frame)                # process video frames one by one
+       tracker_out=mo_tracker.track(frame,detections)   #Invoke **tracker.track(im0,det)** method for starting the tracking process.
+       plotting_function(frame,tracker_out)             # tracker output will be used for plotiing/other applications
+       visualizer(frmae)                                #visualizing function
+   ``` 
+   
+### 3.3 The tracker constructor:
 The tracker cnstructor accept four parameters and they are explained below.   
    1. names       : The list of class names supported by the object detector (list of strings, their index indicate the class label)        
    2. sel_classes    : If user want to track only a particular class objects then the list of classes to be tracked can be provided here.   
@@ -53,7 +82,7 @@ The tracker cnstructor accept four parameters and they are explained below.
    4. max_dist    : maximum distance (in pixels : integer) of movement object centre allowed between consequtive frames to consider they are same object.
       if 'None', then dynamic threshold will be used (the threshold will be set based on the previous object size )
       
-### 3.2 The tracker.track() method:
+### 3.4 The tracker.track() method:
 The 'tracker.track(im0,det)' method accept two parameters and they are as follows.  
    1. im0 : The frame/image being processed (it should be a numpy array)  
    2. det : List of detections (from the detector) of one frame. 
