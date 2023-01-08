@@ -107,15 +107,13 @@ The objects are matched using the following concepts, their corresponding method
 If user want to add more image matching method to improve the matching process, then user can add their own matching methods under 'object' class.
 The method should meet the following requirements,
 1. It should be a static method defined under 'object' class.
-2. The method should return a matchscore between 0 an 1, where value close to zero indicate best match and value near to one indicate least match.
-3. The matching method should be invoked from 'get_match_score' method of 'object' class. and the match score should be appended in return value (numpy array) of this method.
+2. The method should return a match score (float value) between '0' and '1', where value close to '0' indicate best match and value close to '1' indicate least match.
+3. The matching method should be invoked from 'get_match_score' method of 'object' class. and the resulting match score should be appended in return value (numpy array) of this method.
 
 Note: 
-1. Do not introduce many methods as it slows down the tracking process. 
-2. Please very carefull about the processing time of your algorithm, since it affect over performance of the tracker.
+1. Do not introduce many methods since it slows down the tracking process. 
+2. Please ensure that the processing time of your algorithm is very small otherwise it affect over all performance of the tracker.
 
-
-The user can add their own matching algorithms in "object" class to achive customized tracking.
 ## 5. Applications.
 1. Traffic monitoring.
 2. Vehicle spped detection from traffic camera.
