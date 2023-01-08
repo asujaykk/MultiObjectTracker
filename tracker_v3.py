@@ -33,7 +33,7 @@ The track method accept two parameter
 import copy
 import numpy as np
 import math 
-from object import object 
+from MultiObjectTracker.object import object 
 
 
 class tracker:
