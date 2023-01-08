@@ -10,10 +10,23 @@ The tracker process the detections of the current frame and  identify the best m
 
 ## 2. Tracking process:
 As mentioned before ,in object tracking the first step is to detect, locate (bounding box) and find class type of objects from a video frame. Then the detections from the detector will be  passed to the tracker as input and tracker will keep track of the detected objects with unique names/labels from frame to frame until the object un-detected/lost from the scene. The major steps involved in the tracking process is as follows. 
+![Screenshot from 2023-01-08 16-36-57](https://user-images.githubusercontent.com/78997596/211193456-bf8bf9f8-c8ec-416d-aa93-5871e931103f.png)
 
 
 ## 3. How to use the tracker with object detection and recognition model:
-The tracker can be used with any object detector, and a general code template is given below for reference. 
+The tracker can be used with any object detector,   
+As a first step download'MultiObjectTracker' package to your working directory with below command
+```
+git clone git@github.com:asujaykk/MultiObjectTracker.git
+```
+Then import the tracker module (tracker_v3.py) to your python code as follows,
+
+```
+from MultiObjectTracker.tracker_v3 import tracker 
+```
+
+Once you properlyimported the tracker module , then it can be used with any detector, and a general code template is given below for reference.
+
    ```
    #Import modules
    from MultiObjectTracker.tracker_v3 import tracker   #load tracker module 
