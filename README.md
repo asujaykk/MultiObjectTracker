@@ -116,13 +116,12 @@ Note:
 
 
 The user can add their own matching algorithms in "object" class to achive customized tracking.
-## 5. Aplications.
+## 5. Applications.
 1. Traffic monitoring.
 2. Vehicle spped detection from traffic camera.
 3. Accident detection.
 4. Environment monitoring for self driving cars.
 5. Object tracking drones.
-
 
 
          
