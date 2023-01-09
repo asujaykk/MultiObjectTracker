@@ -1,6 +1,11 @@
 # Multi-Object-Tracker.
 This is a multi object tracker package designed to use with any object detectors. We tested it with YOLOv7 object detector, but it will work with other detectors as well by formatting the output of the object detector to make it compatable with the tracker.
 
+### Requirements:
+1. opencv : 4.5.3.56 
+2. Numpy  : 1.19.2 
+3. Python  : 3.7.13 
+
 ## 1. Object tracking:
 Object tracking is the process of identifying same object and keep track of their location with unique label as they move around in a video. Object tracker consist of two sections.
 1. ***Object detector:***  
