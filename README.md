@@ -121,7 +121,7 @@ Note:
 
 ## 5. Applications.
 1. Traffic monitoring.
-2. Vehicle spped detection from traffic camera.
+2. Vehicle speed detection from traffic camera.
 3. Accident detection.
 4. Environment monitoring for self driving cars.
 5. Object tracking drones.
